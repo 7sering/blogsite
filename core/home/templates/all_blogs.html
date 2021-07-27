@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+
+<section class="mt-5 pt-5">
+    <div class="container">
+       
+        <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Blog title</th>
+            <th>Image</th>
+            <th>Created at</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for blog in blog_objects %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{blog.title}}</td>
+            <td><img class="img-fluid" width="200px" height="200px" src="/media/{{blog.image}}" alt="..."/></td>
+            
+            <td>{{blog.created_at}}</td>
+            <td><a href="{% url 'blog_update' blog.id %}"data-toggle="tooltip" data-placement="bottom" title="UPDATE"><i class="fa fa-edit green"></i></a></td>
+            <td><a href="{% url 'delete_blogs' blog.id %}"data-toggle="tooltip" data-placement="bottom" title="DELETE"><i class="fa fa-trash red"></i></a></td>
+          </tr>
+         {% endfor %}
+          </tbody>
+          </table>
+          
+    </div>
+</section>
+
+
+{% endblock %}
+
